@@ -14,8 +14,8 @@ class AddFieldsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->date('birthday')->after('name');
-            $table->string('address')->after('birthday');
+            $table->date('birthday')->nullable()->after('name');
+            $table->string('address')->nullable()->after('birthday');
             $table->string('last_login_ip')->after('remember_token');
             $table->string('last_login_at')->after('last_login_ip');
         });
