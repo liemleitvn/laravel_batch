@@ -18,6 +18,10 @@ class AddFieldsToUsersTable extends Migration
             $table->string('address')->nullable()->after('birthday');
             $table->string('last_login_ip')->after('remember_token');
             $table->string('last_login_at')->after('last_login_ip');
+            $table->string('provider')->nullable()->after('remember_token');
+            $table->string('provider_id')->nullable()->after('provider');
+            $table->text('avatar')->nullable()->after('provider_id');
+            $table->integer('number_of_resend_verify')->default(0)->after('email_verified_at');
         });
     }
 
@@ -33,6 +37,10 @@ class AddFieldsToUsersTable extends Migration
             $table->dropColumn('address');
             $table->dropColumn('last_login_ip');
             $table->dropColumn('last_login_at');
+            $table->dropColumn('provider');
+            $table->dropColumn('provider_id');
+            $table->dropColumn('avatar');
+            $table->dropColumn('number_of_resend_verify');
         });
     }
 }
