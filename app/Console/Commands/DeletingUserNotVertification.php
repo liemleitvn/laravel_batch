@@ -53,14 +53,13 @@ class DeletingUserNotVertification extends Command
 
         } else {
             $users = DB::table('users')->whereNull('email_verified_at')->get();
-
             if (!empty($users)) {
                 foreach ($users as $user) {
-                    $result = DB::table('users')->delete($user['id']);
+                    $result = DB::table('users')->delete($user->id);
                     if ($result) {
-                        Log::info("Delete user: ID - {$user['id']} success");
+                        Log::info("Delete user: ID - {$user->id} success");
                     } else {
-                        Log::error("Delete user: ID - {$user['id']} fail");
+                        Log::error("Delete user: ID - {$user->id} fail");
                     }
                 }
             }

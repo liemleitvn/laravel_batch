@@ -4,10 +4,15 @@ namespace App\Http\Controllers\Auth;
 
 use App\Exceptions\VerificationEmailException;
 use App\Http\Controllers\Controller;
+use App\Jobs\SendWelcomeMail;
+use App\Mail\WelcomeMail;
 use App\Models\User;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class VerificationController extends Controller
 {
@@ -67,5 +72,28 @@ class VerificationController extends Controller
         }
 
         return back()->with('resent', true);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws AuthorizationException
+     */
+    public function verify(Request $request)
+    {
+        if ($request->route('id') != $request->user()->getKey()) {
+            throw new AuthorizationException;
+        }
+
+        if ($request->user()->hasVerifiedEmail()) {
+            return redirect($this->redirectPath());
+        }
+
+        if ($request->user()->markEmailAsVerified()) {
+            event(new Verified($request->user()));
+            dispatch(new SendWelcomeMail($request->user()->toArray()));
+        }
+
+        return redirect($this->redirectPath())->with('verified', true);
     }
 }
