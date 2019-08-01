@@ -18,7 +18,5 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/auth/redirect/{provider}', ['uses' => 'Auth\SocialController@redirect']);
+Route::get('/callback/{provider}', ['uses' => 'Auth\SocialController@callback']);
