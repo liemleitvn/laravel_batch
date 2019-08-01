@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFieldsToUsersTable extends Migration
+class AddNumberResendVerifyEmailToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,7 @@ class AddFieldsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->date('birthday')->nullable()->after('name');
-            $table->string('address')->nullable()->after('birthday');
-            $table->string('last_login_ip')->after('remember_token');
-            $table->string('last_login_at')->after('last_login_ip');
+            $table->integer('number_of_resend_verify')->default(0)->after('email_verified_at');
         });
     }
 
@@ -29,10 +26,7 @@ class AddFieldsToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('birthday');
-            $table->dropColumn('address');
-            $table->dropColumn('last_login_ip');
-            $table->dropColumn('last_login_at');
+            $table->dropColumn('number_of_resend_verify');
         });
     }
 }

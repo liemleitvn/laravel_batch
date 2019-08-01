@@ -1,0 +1,59 @@
+body {
+  //background: #313F4E;
+  background-image: url(/images/main_bg.png);
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+button ~ button {
+  margin-left: 20px;
+}
+
+.login-by-user {
+  margin-top: 5px;
+  button {
+    width: 100%;
+  }
+}
+
+.login-by-facebook {
+  margin-top: 5px;
+  a {
+    width: 100%;
+    background-color: #3F65B5;
+    border-color: #3F65B5;
+    color: #ffffff;
+    opacity: 0.9;
+  }
+
+  a:hover {
+    color: #ffffff;
+    opacity: 1;
+  }
+}
+
+.login-by-google {
+  margin-top: 5px;
+  a {
+    width: 100%;
+    background-color: #CA4130;
+    border-color: #CA4130;
+    color: #ffffff;
+    opacity: 0.9;
+  }
+
+  a:hover {
+    color: #ffffff;
+    opacity: 1;
+  }
+}
+
+.verification-email-error {
+  text-align: center;
+
+  .title {
+    font-weight: bold;
+  }
+}

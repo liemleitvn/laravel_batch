@@ -100,4 +100,6 @@ return [
         ],
     ],
 
+    'number_of_resend_verify' => env('NUMBER_OF_RESEND_VERIFY_EMAIL'),
+
 ];
