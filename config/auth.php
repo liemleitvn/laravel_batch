@@ -68,7 +68,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Models\User::class,
         ],
 
         // 'users' => [
@@ -99,5 +99,7 @@ return [
             'expire' => 60,
         ],
     ],
+
+    'number_of_resend_verify' => env('NUMBER_OF_RESEND_VERIFY_EMAIL'),
 
 ];
