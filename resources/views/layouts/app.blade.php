@@ -21,7 +21,7 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
+    <div id="app" class="app">
         <nav class="navbar navbar-expand-md navbar-light shadow-sm bg-header">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -36,10 +36,22 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">News</a>
+                            <a class="nav-link" href="#">NEWS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Forum</a>
+                            <a class="nav-link" href="#">FORUM</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">TRAVEL</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">LIFESTYLE</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">VIDEO</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">FEATURES</a>
                         </li>
                     </ul>
 
@@ -50,11 +62,11 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
+{{--                            @if (Route::has('register'))--}}
+{{--                                <li class="nav-item">--}}
+{{--                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>--}}
+{{--                                </li>--}}
+{{--                            @endif--}}
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
