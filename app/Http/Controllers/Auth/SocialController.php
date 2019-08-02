@@ -12,6 +12,7 @@ class SocialController extends Controller
     /**
      * Create a redirect method to social
      *
+     * @param $provider
      * @return void
      */
     public function redirect($provider)
@@ -39,7 +40,7 @@ class SocialController extends Controller
      * @return mixed
      */
     function createUser($getInfo,$provider){
-        $user = User::where('provider_id', $getInfo->id)->where('email', $getInfo->email)->first();
+        $user = User::where('provider_id', $getInfo->id)->orwhere('email', $getInfo->email)->first();
         if (!$user) {
             $user = User::create([
                 'name'     => $getInfo->name,
@@ -48,7 +49,12 @@ class SocialController extends Controller
                 'provider_id' => $getInfo->id,
                 'avatar' => !empty($getInfo->avatar) ? $getInfo->avatar : NULL,
             ]);
+        } elseif (empty($user->avatar)) {
+            $user->update([
+                'avatar' => !empty($getInfo->avatar) ? $getInfo->avatar : NULL,
+            ]);
         }
+
         return $user;
     }
 }

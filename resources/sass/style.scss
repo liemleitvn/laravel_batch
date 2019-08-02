@@ -57,3 +57,19 @@ button ~ button {
     font-weight: bold;
   }
 }
+
+.logo-image {
+  max-width: 100px;
+  max-height: 45px;
+  border-radius: 50%;
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.bg-header {
+  background-color: #071526;
+  color: #ffffff !important;
+}
