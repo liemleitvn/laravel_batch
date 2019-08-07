@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Carbon;
 use Socialite;
 use App\Models\User;
 
@@ -31,7 +32,7 @@ class SocialController extends Controller
         $getInfo = Socialite::driver($provider)->user();
         $user = $this->createUser($getInfo,$provider);
         auth()->login($user);
-        return redirect()->to('/home');
+        return redirect()->to('/');
     }
 
     /**
@@ -48,10 +49,12 @@ class SocialController extends Controller
                 'provider' => $provider,
                 'provider_id' => $getInfo->id,
                 'avatar' => !empty($getInfo->avatar) ? $getInfo->avatar : NULL,
+                'last_login_at' => Carbon::now()->toDateTimeString(),
             ]);
-        } elseif (empty($user->avatar)) {
+        } else {
             $user->update([
                 'avatar' => !empty($getInfo->avatar) ? $getInfo->avatar : NULL,
+                'last_login_at' => Carbon::now()->toDateTimeString(),
             ]);
         }
 
