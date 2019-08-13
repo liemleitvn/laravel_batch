@@ -26,15 +26,15 @@ class Admin
 
         if (Auth::user()) {
             if ($request->ajax() || $request->wantsJson()) {
-                return response()->json(['message' => config('auth.message.permission')], 403);
+                return response()->json(['message' => __('auth.permission')], 403);
             }
 
             //abort(401);
-            abort(403, config('auth.message.permission'));
+            abort(403, __('auth.permission'));
         }
 
         if ($request->ajax() || $request->wantsJson()) {
-            return response()->json(['message' => config('auth.message.unauthenticated')], 401);
+            return response()->json(['message' => __('auth.unauthenticated')], 401);
         }
 
         //abort(401);

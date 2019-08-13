@@ -15,5 +15,7 @@ return [
 
     'failed' => 'Email or password is incorrect',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'permission' => "You don't have permission to access this page",
+    'unauthenticated' => 'Unauthenticated'
 
 ];
