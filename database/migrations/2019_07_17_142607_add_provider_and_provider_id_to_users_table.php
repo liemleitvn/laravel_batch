@@ -17,6 +17,10 @@ class AddProviderAndProviderIdToUsersTable extends Migration
             $table->string('provider')->nullable()->after('remember_token');
             $table->string('provider_id')->nullable()->after('provider');
             $table->text('avatar')->nullable()->after('provider_id');
+            $table->tinyInteger('status')
+                ->default(1)
+                ->after('provider_id')
+                ->comment('0: disable, 1: active, 2: delete');
         });
     }
 
@@ -31,6 +35,7 @@ class AddProviderAndProviderIdToUsersTable extends Migration
             $table->dropColumn('provider');
             $table->dropColumn('provider_id');
             $table->dropColumn('avatar');
+            $table->dropColumn('status');
         });
     }
 }
