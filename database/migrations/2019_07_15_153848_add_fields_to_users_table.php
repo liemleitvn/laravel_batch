@@ -16,8 +16,8 @@ class AddFieldsToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->date('birthday')->nullable()->after('name');
             $table->string('address')->nullable()->after('birthday');
-            $table->string('last_login_ip')->after('remember_token');
-            $table->string('last_login_at')->after('last_login_ip');
+            $table->string('last_login_ip')->after('remember_token')->nullable();
+            $table->string('last_login_at')->after('last_login_ip')->nullable();
             $table->unsignedTinyInteger('type')
                 ->after('password')
                 ->comment('0: normal, 1: admin')
