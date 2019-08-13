@@ -18,6 +18,10 @@ class AddFieldsToUsersTable extends Migration
             $table->string('address')->nullable()->after('birthday');
             $table->string('last_login_ip')->after('remember_token');
             $table->string('last_login_at')->after('last_login_ip');
+            $table->unsignedTinyInteger('type')
+                ->after('password')
+                ->comment('0: normal, 1: admin')
+                ->default(0);
         });
     }
 
@@ -33,6 +37,7 @@ class AddFieldsToUsersTable extends Migration
             $table->dropColumn('address');
             $table->dropColumn('last_login_ip');
             $table->dropColumn('last_login_at');
+            $table->dropColumn('type');
         });
     }
 }

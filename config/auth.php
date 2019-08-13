@@ -100,6 +100,11 @@ return [
         ],
     ],
 
-    'number_of_resend_verify' => env('NUMBER_OF_RESEND_VERIFY_EMAIL'),
+    'number_of_resend_verify' => env('NUMBER_OF_RESEND_VERIFY_EMAIL', 3),
+
+    'message' => [
+        'permission' => "You don't have permission to access this page",
+        'unauthenticated' => 'Unauthenticated'
+    ]
 
 ];

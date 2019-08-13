@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Admin;
 use App\Http\Middleware\CustomEnsureEmailIsVerified;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -61,6 +62,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => CustomEnsureEmailIsVerified::class,
+        'admin' => Admin::class
     ];
 
     /**

@@ -7,6 +7,22 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+
+/**
+ * Class User
+ * @package App\Models
+ * @property User name
+ * @property User email
+ * @property User address
+ * @property User birthday
+ * @property User last_login_ip
+ * @property User provider
+ * @property User provider_id
+ * @property User avatar
+ * @property User last_login_at
+ * @property User type
+ * @property User isAdmin
+ */
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
@@ -19,14 +35,14 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'name',
         'email',
-        'password',
         'address',
         'birthday',
         'last_login_ip',
         'provider',
         'provider_id',
         'avatar',
-        'last_login_at'
+        'last_login_at',
+        'type'
     ];
 
     /**
@@ -46,6 +62,11 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * @var array
+     */
+    protected $appends = ['isAdmin'];
 
     /**
      * Send the email verification notification.
@@ -72,4 +93,14 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Comment::class);
     }
+
+    /**
+     * Check user is admin
+     *
+     * @return bool
+     */
+    public function getisAdminAttribute() {
+        return !! $this->type == 1;
+    }
+
 }
