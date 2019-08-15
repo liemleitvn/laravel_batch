@@ -20,3 +20,8 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/auth/redirect/{provider}', ['uses' => 'Auth\SocialController@redirect']);
 Route::get('/callback/{provider}', ['uses' => 'Auth\SocialController@callback']);
+
+Route::get('/admin', ['uses' => 'AdminController@index', 'as' => 'index']);
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function () {
+    Route::get('/', ['uses' => 'AdminController@index', 'as' => 'index']);
+});

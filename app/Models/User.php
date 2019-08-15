@@ -67,7 +67,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * @var array
      */
-    protected $appends = ['isAdmin'];
+    protected $appends = ['isAdmin', 'role'];
 
     /**
      * Send the email verification notification.
@@ -100,8 +100,21 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @return bool
      */
-    public function getisAdminAttribute() {
+    public function getisAdminAttribute()
+    {
         return !! $this->type == 1;
+    }
+
+    public function getRoleAttribute()
+    {
+        switch ($this->type) {
+            case 1:
+                return 'Admin';
+            case 2:
+                return 'Editor';
+            default:
+                return 'Member';
+        }
     }
 
 }
